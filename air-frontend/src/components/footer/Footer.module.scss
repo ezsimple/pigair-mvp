@@ -1,0 +1,25 @@
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #3b4c58;
+  height: 60px;
+  padding-top: 10px;
+  text-align: center;
+  color: #fff;
+}
+.footer .footer_menu li {
+  display: inline-block;
+  width: 21%;
+}
+.footer .footer_menu li a {
+  display: block;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 20px;
+}
+.footer .footer_menu li i {
+  display: block;
+  font-size: 20px;
+}

@@ -1,0 +1,15 @@
+.ag-header-cell-label {
+  /*Necessary to allow for text to grow vertically*/
+  height: 100%;
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.ag-header-cell-text {
+  /*Necessary to allow for text to grow vertically*/
+  height: 100%;
+  text-align: center;
+  margin: 0 auto;
+}

@@ -1,0 +1,312 @@
+/* eggplan layout Base */
+
+@charset "utf-8";
+@import url('content.css');
+@import url('form.css');
+@import url('material.css');
+@import url('animate.css');
+
+/* web fonts */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 300;
+  src: url(../fonts/NotoSansKR-Light.woff2) format('woff2'),
+    url(../fonts/NotoSansKR-Light.woff) format('woff'),
+    url(../fonts/NotoSansKR-Light.otf) format('opentype');
+}
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/NotoSansKR-Regular.woff2') format('woff2'),
+    url('../fonts/NotoSansKR-Regular.woff') format('woff'),
+    url('../fonts/NotoSansKR-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/NotoSansKR-Medium.woff2') format('woff2'),
+    url('../fonts/NotoSansKR-Medium.woff') format('woff'),
+    url('../fonts/NotoSansKR-Medium.otf') format('opentype');
+}
+
+/* icon fonts */
+@font-face {
+  font-family: 'Material Design Icons';
+  src: url('../fonts/materialdesignicons-webfont.eot?v=1.8.36');
+  src: url('../fonts/materialdesignicons-webfont.eot?#iefix&v=1.8.36')
+      format('embedded-opentype'),
+    url('../fonts/materialdesignicons-webfont.woff2?v=1.8.36') format('woff2'),
+    url('../fonts/materialdesignicons-webfont.woff?v=1.8.36') format('woff'),
+    url('../fonts/materialdesignicons-webfont.ttf?v=1.8.36') format('truetype'),
+    url('../fonts/materialdesignicons-webfont.svg?v=1.8.36#materialdesigniconsregular')
+      format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+button,
+select,
+input {
+  padding: 0;
+  margin: 0;
+  font-family: 'Noto Sans KR', Helvetica, sans-serif;
+}
+
+p {
+  margin: 0 !important;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  background-color: #f2f5f9!important;
+  font-size: 13px;
+  line-height: 20px;
+  vertical-align: middle;
+  text-decoration: none;
+  color: #333;
+  font-weight: 400;
+  word-break: keep-all;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* a Link style */
+a {
+  text-decoration: none;
+  color: #555 !important;
+}
+a:active,
+a:link,
+a:visited {
+  outline: 0;
+  text-decoration: none;
+}
+a:hover {
+  color: #1c91e2;
+  outline: 0;
+  text-decoration: underline;
+}
+
+/* etc */
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+address,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-style: normal;
+  font-weight: 500;
+}
+img {
+  vertical-align: middle;
+}
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn:active:focus,
+.btn:focus,
+:active,
+:focus,
+:visited,
+a,
+a:active,
+a:focus,
+a:visited {
+  outline: 0;
+}
+em {
+  font-style: normal;
+  font-weight: 400;
+}
+ol,
+ul,
+li {
+  list-style: none;
+  margin-bottom: 0 !important;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+
+/*--------------------
+layout antd css
+----------------------*/
+.ant-layout-header {height: 40px !important;line-height: 40px !important;background: #fff !important;text-align: right;border-bottom: 1px solid #ced6e5;}
+.ant-layout {background: #e7eef6;width: 100%;min-width: 1150px;}
+.ant-layout-header a {color: #555;}
+.ant-layout-header a:hover {color: #159c89 !important;}
+
+.ant-menu-dark .ant-menu-item-selected .anticon + span {color:#0ed5bb!important;}
+.ant-menu-dark.ant-menu-inline {padding-top: 20px; text-align: left;}
+.ant-menu-item .antico {font-size:13px}
+.ant-menu-dark .ant-menu-inline.ant-menu-sub {background: #0c1829!important; -webkit-box-shadow:0 2px 8px rgba(0, 0, 0, 0) inset!important; padding: 5px 0}
+.ant-menu-dark .ant-menu-inline.ant-menu-sub li {padding-left: 60px!important; height:30px!important;line-height: 30px!important;}
+.ant-menu-inline .ant-menu-item {font-size: 13px!important}
+
+.ant-menu-dark {background: #263042 !important;}
+.ant-layout-footer {padding: 0 50px 20px 50px !important;color: #869fb2;text-align: right !important;font-size: 13px !important;}
+.ant-menu.ant-menu-dark .ant-menu-item-selected,
+.ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {background: none !important;}
+
+.ant-input {font-size: 13px!important; color: #637282!important;height:30px!important;border: 1px solid #ccd6e7!important;}
+.ant-input:focus  {outline:0; border-color:#40a9ff!important }
+
+.ant-calendar-picker-icon svg {vertical-align: top!important}
+.ant-btn-sm {background-color: #7b8b9d!important; border:0!important}
+.ant-popover-inner {box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)!important;}
+.ant-popover-buttons {text-align: center!important}
+.ant-time-picker-input {width: 95%!important; height: 23px!important; border: 0!important; padding:0 10px!important; line-height: 18px!important;}
+.ant-time-picker {border-radius: 3px!important; margin-top:2px!important; margin-bottom:2px!important;margin-left:2px!important; font-size: 13px!important; background: #fff}
+
+.ag-theme-balham .ag-header-cell::after, .ag-theme-balham .ag-header-group-cell::after {height:33px!important; margin-top:0!important} 
+.ant-calendar-picker {vertical-align: middle}
+
+
+#root table tbody td a {padding:0 10px; color:#333; font-size:13px}
+#root table tbody td a:hover {color:#007bff; }
+#root .btn-outline-warning {color:#f26c13!important; margin-bottom: 5px!important}
+#root .btn-outline-primary {color:#007bff!important;margin-bottom: 5px!important}
+#root .btn-outline-warning:hover {color:#fff!important}
+#root .btn-outline-primary:hover {color:#fff!important} 
+
+.ant-layout-content {padding: 20px 30px 10px 30px; text-align: left}
+.ant-menu-item .anticon,.ant-menu-submenu-title .anticon {margin-right: 0 !important;}
+
+.ant-select-arrow {color:#555!important; font-size:11px!important;}
+.ant-calendar-picker-icon {color:#777!important;}
+.ag-filter-body-wrapper select {  background-position: right 10px top 10px;}
+
+
+.ant-select-selection {border:1px solid #ccd6e7!important}
+.ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active {border-color:#6abcff!important;}
+
+
+/*--------------------
+layout new css
+----------------------*/
+.egglogo {
+  color: #fff;
+  text-align: center;
+  height: 80px;
+  background: #008b79;
+  padding-top: 20px;
+}
+.egglogo img:nth-child(1) {
+  width: 50px;
+  padding-bottom: 40px;
+}
+.egglogo img:nth-child(2) {
+  width: 40%;
+  line-height: 100px;
+  padding-bottom: 40px;
+}
+
+.part_section {
+  background: #15a897;
+  text-align: center;
+}
+.ant-menu i {
+  font-size: 20px !important;
+  vertical-align: middle;
+  padding-right: 15px;
+}

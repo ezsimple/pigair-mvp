@@ -1,0 +1,25 @@
+/* header */
+.navbar {
+  position: relative;
+  text-align: center !important;
+  padding: 0 !important;
+  display: block;
+}
+.navbar .btnmenu {
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+.navbar .btnmenu img {
+  width: 28px;
+}
+.navbar .btnmenu i {
+  font-size: 24px;
+}
+.navbar h1 {
+  text-align: center !important;
+  line-height: inherit;
+}
+.navbar h1 img {
+  width: 180px;
+}
