@@ -41,17 +41,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter
 		response.setHeader("Pragma", "no-cache");
 		response.setHeader("X-Frame-Option", "DENY");
 		
+		// -- WebSecurityConfiguration 참조
 		String path = request.getServletPath();
-		if("/login.do".equals(path)
-				|| "/logout.do".equals(path)
-		        || "/error".equals(path)
-				|| "/".equals(path)
-				|| StringUtils.startsWith(path, "/static/")
-				|| StringUtils.startsWith(path, "/webjars/")
-				|| (StringUtils.startsWith(path, "/error/") && StringUtils.endsWith(path, ".do"))
-				) 
-			return true;
-
 		HttpServletRequest req = ((HttpServletRequest) request);
 		HttpSession session = req.getSession(false);
 		if(session==null) 

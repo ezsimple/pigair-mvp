@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -32,6 +33,14 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 			.addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
 	
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry
+                .addMapping("/api/**")
+                .allowedOrigins("http://localhost:7000")
+        ;
+    }
+	
 	@Bean
 	LoginInterceptor loginInterceptor() {
 		return new LoginInterceptor();
@@ -41,8 +50,14 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(loginInterceptor())
 		.addPathPatterns("/**")
-		.excludePathPatterns("/","/static/**","/webjars/**","/login","/logout","/index","/error/*")
-		;
+		.excludePathPatterns("/"
+							,"/static/**"
+							,"/webjars/**"
+							,"/login"
+							,"/logout"
+							,"/index.html"
+							,"/error/*")
+							;
 	}
 
 //  @Value("${upload.dir}")

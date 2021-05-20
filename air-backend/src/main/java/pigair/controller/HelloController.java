@@ -17,9 +17,14 @@ public class HelloController {
 	HelloService helloService;
 	
 	@ResponseBody
-	@GetMapping(value = {"/", "/hello"}, produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = {"/hello"}, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Object hello() throws Exception {
 		return helloService.hello();
+	}
+
+	@GetMapping(value = {"/", "/error"})
+	public Object index() throws Exception {
+		return "index.html";
 	}
 
 }

@@ -39,7 +39,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/static/**")
 			.antMatchers("/images/**")
 			.antMatchers("/css/**")
-			.antMatchers("/js/**");
+			.antMatchers("/js/**")
+			.antMatchers("/login")
+			.antMatchers("/logout")
+			.antMatchers("/error")
+			.antMatchers("/index.html")
+			;
 	}
 	
 	@Override
@@ -63,10 +68,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 			// .antMatchers("/**").permitAll() // 처음 UI디자인시 인증 무시
 			.antMatchers("/login.do").permitAll()
-
-			.antMatchers("/mesureInfo.do").permitAll()  // 측정센서 정보
-			.antMatchers("/ventlInfo.do").permitAll()   // 환기팬 정보
-			.antMatchers("/weatherInfo.do").permitAll() // 기상대 정보
 
 			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 			.antMatchers("/error/403.do").permitAll()
