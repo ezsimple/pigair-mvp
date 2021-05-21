@@ -23,7 +23,7 @@ public class HelloController {
 	}
 
 	@GetMapping(value = {"/", "/error"})
-	public Object index() throws Exception {
+	public String index() throws Exception {
 		return "index.html";
 	}
 

@@ -43,6 +43,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter
 		
 		// -- WebSecurityConfiguration 참조
 		String path = request.getServletPath();
+		if(StringUtils.equals("/", path)
+				|| StringUtils.equals("/error", path))
+			return true;
 		HttpServletRequest req = ((HttpServletRequest) request);
 		HttpSession session = req.getSession(false);
 		if(session==null) 

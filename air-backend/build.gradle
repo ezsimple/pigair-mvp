@@ -3,6 +3,9 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 	id 'war'
+
+	// moowork.node 추가
+    id "com.moowork.node" version "1.3.1"
 }
 
 group = 'pigair'
@@ -26,6 +29,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.session:spring-session-core'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'javax.validation:validation-api'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -54,9 +58,23 @@ dependencies {
 	implementation 'org.elasticsearch.client:transport:7.4.1'
 	implementation 'org.elasticsearch.client:elasticsearch-rest-client:7.4.1'
 	implementation 'com.hubspot.jinjava:jinjava:2.5.2'
-	implementation 'javax.validation:validation-api:1.0.0.GA'
 }
 
 test {
-	useJUnitPlatform()
+	// useJUnitPlatform()
 }
+
+def frontendDir = "../air-frontend"
+
+task appNpmInstall(type: NpmTask) {
+    workingDir = file("${frontendDir}")
+    args = ["run", "build"]
+}
+
+task copyWebApp(type: Copy) {
+    from "$frontendDir/build"
+    into "build/resources/main/static"
+}
+
+copyWebApp.dependsOn(appNpmInstall)
+compileJava.dependsOn(copyWebApp)

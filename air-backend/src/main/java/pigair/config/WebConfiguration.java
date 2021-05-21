@@ -55,8 +55,13 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 							,"/webjars/**"
 							,"/login"
 							,"/logout"
+							,"/error"
+							// -- for React frontend ----------
 							,"/index.html"
-							,"/error/*")
+							,"/favicon.ico"
+							,"/service-worker.js"
+							,"/precache-manifest.*"
+							)
 							;
 	}
 

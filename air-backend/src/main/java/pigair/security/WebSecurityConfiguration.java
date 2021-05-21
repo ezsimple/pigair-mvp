@@ -42,8 +42,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/js/**")
 			.antMatchers("/login")
 			.antMatchers("/logout")
-			.antMatchers("/error")
-			.antMatchers("/index.html")
 			;
 	}
 	
@@ -67,18 +65,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/").permitAll()
 
 			// .antMatchers("/**").permitAll() // 처음 UI디자인시 인증 무시
-			.antMatchers("/login.do").permitAll()
+			.antMatchers("/login").permitAll()
 
 			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-			.antMatchers("/error/403.do").permitAll()
-			.antMatchers("/error/404.do").permitAll()
-			.antMatchers("/error/500.do").permitAll()
+			.antMatchers("/error").permitAll()
 			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
 			.antMatchers("/admin/").hasAuthority("ROLE_ADMIN")
-			.antMatchers("/admin/user_list.do").hasAnyAuthority("ROLE_ADMIN", "ROLE_RESEARCH", "ROLE_USER")
-			.antMatchers("/admin/user_save.do").hasAnyAuthority("ROLE_ADMIN", "ROLE_RESEARCH", "ROLE_USER")
-			.antMatchers("/admin/equip_list.do").hasAnyAuthority("ROLE_ADMIN", "ROLE_RESEARCH", "ROLE_USER")
 			.antMatchers("/alarm/").hasAnyAuthority("ROLE_ADMIN", "ROLE_RESEARCH", "ROLE_USER")
 			.antMatchers("/board/").hasAnyAuthority("ROLE_ADMIN", "ROLE_RESEARCH", "ROLE_USER")
 			.antMatchers("/anal/").hasAnyAuthority("ROLE_ADMIN", "ROLE_RESEARCH", "ROLE_USER")
@@ -94,16 +87,16 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 			.and()
 				.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout.do"))
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/")
 				.invalidateHttpSession(true)
 				;
 
 		http.logout()
-			.logoutUrl("/logout.do")
+			.logoutUrl("/logout")
 			.logoutSuccessUrl("/");
 		
-		http.exceptionHandling().accessDeniedPage("/login.do");
+		http.exceptionHandling().accessDeniedPage("/");
 
 		// JWT Token 적용
 		http.apply(new JwtTokenFilterConfiguration(jwtTokenProvider));
