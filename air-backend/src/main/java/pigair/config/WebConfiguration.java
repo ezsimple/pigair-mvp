@@ -56,6 +56,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 							,"/login"
 							,"/logout"
 							,"/error"
+							,"/hello"
 							// -- for React frontend ----------
 							,"/index.html"
 							,"/favicon.ico"
