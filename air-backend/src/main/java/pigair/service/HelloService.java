@@ -6,8 +6,12 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.ScriptOperations;
+import org.springframework.data.mongodb.core.query.BasicQuery;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.script.ExecutableMongoScript;
+import org.springframework.data.mongodb.core.script.NamedMongoScript;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,6 +21,9 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
 import com.mongodb.client.MongoCollection;
+
+// import com.mongodb.BasicDBList;
+// import com.mongodb.BasicDBObject;
 
 import lombok.extern.slf4j.Slf4j;
 import pigair.entity.User;
@@ -70,17 +77,38 @@ public class HelloService {
 
 		MongoDatabase mdb = mongoClient.getDatabase("airDB");
 		MongoCollection<Document> collection = mdb.getCollection("users");
-		FindIterable<Document> out = collection.find();
 		
 		// MongoIterable<String> collections = mdb.listCollectionNames();
-		
 		// Document stats = mdb.runCommand(new Document("dbstats", 1));
+		
+	    // StringBuilder text = new StringBuilder();
+	    // BufferedReader br = new BufferedReader(new FileReader(new File("/path/file.js")));
+	    // try {
+	    //    while (true) {
+	    //        String line = br.readLine();
+	    //        if (line == null)
+	    //            break;
+	    //        text.append(line).append("\n");
+	    //    }
+	    // } finally {
+	    //     try { br.close(); } catch (Exception ignore) {}
+	    // }
+	    // BasicDBObject obj = new BasicDBObject();
+	    // obj.append("$eval", text.toString());
+	    // System.out.println(mongoTemplate.executeCommand(obj));
+		
+		// String jsonSql="{distinct:'"+tableName+"', key:'"+columnName+"'}";
+		// Document rows = mongoTemplate.executeCommand(jsonSql);
 
-//		ReadPreference resultClass = null;
-//		Bson command = null;
-//		Document out = db.runCommand(command, resultClass);
-
-		return objectMapper.writeValueAsString(obj);
+		// ReadPreference resultClass = null;
+		// Bson command = null;
+		// Document out = db.runCommand(command, resultClass);
+		
+		BasicQuery q = new BasicQuery("{}");
+		List<User> rows = mongoTemplate.find(q, User.class);
+		User row = mongoTemplate.findOne(q, User.class);
+		
+		return objectMapper.writeValueAsString(row);
 		
 	}
 }
