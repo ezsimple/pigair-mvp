@@ -2,6 +2,8 @@ package pigair.service;
 
 import java.util.List;
 
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -9,6 +11,12 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.ReadPreference;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoIterable;
+import com.mongodb.client.MongoCollection;
 
 import lombok.extern.slf4j.Slf4j;
 import pigair.entity.User;
@@ -21,11 +29,15 @@ public class HelloService {
 	MongoTemplate mongoTemplate;
 	
 	@Autowired
+	MongoClient mongoClient;
+	
+	@Autowired
 	SequenceService sequenceService;
 	
 	@Autowired
 	ObjectMapper objectMapper;
 
+	
 	public String hello() throws Exception {
 
 		mongoTemplate.getCollection("users").drop(); // delete all
@@ -54,7 +66,21 @@ public class HelloService {
 		log.debug("{}", query);
 		log.debug("{}", obj);
 		
-		return objectMapper.writeValueAsString(result);
+		// MongoIterable<String> collections = mongoClient.getDatabase("airDB").listCollectionNames();
+
+		MongoDatabase mdb = mongoClient.getDatabase("airDB");
+		MongoCollection<Document> collection = mdb.getCollection("users");
+		FindIterable<Document> out = collection.find();
+		
+		// MongoIterable<String> collections = mdb.listCollectionNames();
+		
+		// Document stats = mdb.runCommand(new Document("dbstats", 1));
+
+//		ReadPreference resultClass = null;
+//		Bson command = null;
+//		Document out = db.runCommand(command, resultClass);
+
+		return objectMapper.writeValueAsString(obj);
 		
 	}
 }

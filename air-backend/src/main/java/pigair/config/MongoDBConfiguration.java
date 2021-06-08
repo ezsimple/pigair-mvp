@@ -17,40 +17,48 @@ import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 
 import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
 
 public class MongoDBConfiguration {
 
 	@Autowired 
+	@SuppressWarnings("deprecation")
 	private MongoDbFactory mongoDbFactory;
 
-    @Autowired 
-    private MongoMappingContext mongoMappingContext;
-    
-    public MongoCustomConversions customConversions() {
-        List<Converter<?, ?>> converters = new ArrayList<>();
-        // converters.add(DateToZonedDateTimeConverter.INSTANCE);
-        // converters.add(ZonedDateTimeToDateConverter.INSTANCE);
-        return new MongoCustomConversions(converters);
-    }
-    
-    @Bean
-    public MongoTemplate mongoTemplate() throws UnknownHostException {
-        MappingMongoConverter converter = new MappingMongoConverter(new DefaultDbRefResolver(mongoDbFactory),
-                new MongoMappingContext());
-        // converter.setCustomConversions(customConversions());
-        converter.afterPropertiesSet();
-        return new MongoTemplate(mongoDbFactory, converter);
-    }
-    
-//  @Value("${spring.data.mongodb.host}")
-//  private String host;
-//    
-//  @Value("${spring.data.mongodb.port}")
-//  private String port;
-//    
-//  @Bean
-//  public MongoClient mongoClient() throws IOException {
-//      return new MongoClient(host, Integer.parseInt(port));
-//  }
+//	@Autowired 
+//	private MongoMappingContext mongoMappingContext;
 
+	public MongoCustomConversions customConversions() {
+		List<Converter<?, ?>> converters = new ArrayList<>();
+		// converters.add(DateToZonedDateTimeConverter.INSTANCE);
+		// converters.add(ZonedDateTimeToDateConverter.INSTANCE);
+		return new MongoCustomConversions(converters);
+	}
+
+	@Bean
+	public MongoTemplate mongoTemplate() throws UnknownHostException {
+		MappingMongoConverter converter = new MappingMongoConverter(new DefaultDbRefResolver(mongoDbFactory),
+				new MongoMappingContext());
+		// converter.setCustomConversions(customConversions());
+		converter.afterPropertiesSet();
+		return new MongoTemplate(mongoDbFactory, converter);
+	}
+
+
+	@Value("${spring.data.mongodb.host}")
+	private String host;
+
+	@Value("${spring.data.mongodb.port}")
+	private String port;
+
+	@Value("${spring.data.mongodb.database}")
+	private String databaseName;
+
+	@Bean
+	public MongoClient mongoClient() throws IOException {
+		final String connectionString = "mongodb://"+host+":"+port;
+		return MongoClients.create(connectionString);
+	}
+	
 }
