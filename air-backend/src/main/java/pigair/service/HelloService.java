@@ -15,6 +15,8 @@ import org.springframework.data.mongodb.core.script.NamedMongoScript;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
 import com.mongodb.ReadPreference;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
@@ -104,9 +106,19 @@ public class HelloService {
 		// Bson command = null;
 		// Document out = db.runCommand(command, resultClass);
 		
-		BasicQuery q = new BasicQuery("{}");
+		BasicQuery q = new BasicQuery("{userId: 'hello', userNm: '헬로우'}");
 		List<User> rows = mongoTemplate.find(q, User.class);
 		User row = mongoTemplate.findOne(q, User.class);
+		
+		BasicDBList andList = new BasicDBList();
+		andList.add(new BasicDBObject("by", "tutorials point"));
+		andList.add(new BasicDBObject("title", "MongoDB Overview")); 
+		BasicDBObject and = new BasicDBObject("$and", andList);
+		BasicDBObject command = new BasicDBObject("find", "collectionName");
+		command.append("filter", and); 
+		
+		log.debug("{}", command.toString());
+		// mongoTemplate.executeCommand(command.toString());
 		
 		return objectMapper.writeValueAsString(row);
 		
